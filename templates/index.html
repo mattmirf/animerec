@@ -51,6 +51,16 @@
             padding: -20px;
         }
 
+        .anime_card:hover {
+            border-color: white;
+            box-shadow: 0 4px 18px 0 rgba(255, 255, 255, 0.5)
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
         img {
             border-radius: 8px;
         }
@@ -83,10 +93,12 @@
     <div class="anime_grid">
         {% for a in anime[:6] %}
             <div class="anime_card">
+                <a href="{{ a.mal_url }}" target="_blank">
                 <figure>
                     <img  src="{{ a.image_url }}" alt="{{ a.title }}">
                     <figcaption>⭐ {{ a.score }}</figcaption>
                 </figure>
+                </a>
                 <h2>{{ a.title }}</h2>
                 <h4>{{ a.alternative_title }}</h4>
 
