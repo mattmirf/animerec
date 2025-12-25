@@ -7,7 +7,7 @@ df = pd.read_csv("cleaned_animes.csv")
 # Page
 @app.route("/random-anime")
 def random_anime(): 
-    random_df = df.sample(n=9)
+    random_df = df.sample(n=6)
     random_df = random_df.to_dict(orient='records')
 
     for data in random_df:
