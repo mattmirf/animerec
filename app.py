@@ -4,7 +4,6 @@ import pandas as pd
 app = Flask(__name__)
 df = pd.read_csv("cleaned_animes.csv")
 
-# Page
 @app.route("/random-anime")
 def random_anime(): 
     anime_list = df.sample(n=6)
@@ -19,32 +18,38 @@ def anime():
     query = request.args.get("search","").lower()
     message = None
     eps = request.args.get("eps", 0, type=int)
-    score = request.args.get("score", 0, type=int)
+    score = request.args.get("score", 0, type=float)
+    year = request.args.get("year", 0, type=int)
 
     if query:
         anime_list = df[
             df["title"].str.lower().str.contains(query, na=False, regex=False) | 
             df["alternative_title"].str.lower().str.contains(query, na=False, regex=False)]
-        # anime_list = anime_list.to_dict(orient="records")
+
         if anime_list.empty:
             message = f"No results found for '{query}'"
 
-    else:
-        # anime_list = df.nlargest(21, "score")
-        anime_list = df.sort_values(by="score", ascending=False)[:100].iloc[1:]
-        
-        
         if eps:
-            anime_list = df[df["episodes"] >= eps]
-            # anime_list.drop(df[df["episodes"] < eps].index, inplace=True)
-
+            anime_list = anime_list[anime_list["episodes"] >= eps]
         if score:
-            anime_list = df[df["score"] >= score]
-            # anime_list.drop(df[df["score"] < score].index, inplace=True)
+            anime_list = anime_list[anime_list["score"] >= score]
+        if year:
+            anime_list = anime_list[anime_list["year"] >= year]
 
-        if (eps > 0) & (score >= 7):
-            anime_list = df[(df["episodes"] >= eps) & (df["score"] >= score)]
+    else:   
+        anime_list = df
+        
+        if (eps or score or year):
+            if eps:
+                anime_list = anime_list[anime_list["episodes"] >= eps]
+            if score:
+                anime_list = anime_list[anime_list["score"] >= score]
+            if year:
+                anime_list = anime_list[anime_list["year"] >= year]
 
+        else: 
+            anime_list = df.sort_values(by="score", ascending=False)[:100].iloc[1:]
+        
         # TODO: Filters for TV/Movie, Year, & Genres
     
     anime_list = anime_list.to_dict(orient='records')

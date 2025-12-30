@@ -69,7 +69,7 @@
             font-size:larger;
         }
 
-        .search_bar {
+        .search {
             --padding: 6px;
             margin-top: 10px;
             width:250px;
@@ -78,10 +78,78 @@
             padding: var(--padding);
             border-radius: 20px;
             background: white;
-            
         }
 
-        .search_bar input{
+        .search input{
+            font-family: "Fredoka", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;            font-size: 12px;
+            font-weight: 600;
+            font-size: 18px;
+            color:#333333;
+            outline: none;
+            border-color: white;
+            border:none;
+            background: transparent;
+            text-align: center;
+        }
+
+        .episode_bar {
+            --padding: 6px;
+            margin-top: 10px;
+            width:250px;
+            display: flex;
+            align-items: center;
+            padding: var(--padding);
+            border-radius: 20px;
+            background: white;
+        }
+
+        .episode_bar input{
+            font-family: "Fredoka", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;            font-size: 12px;
+            font-weight: 600;
+            font-size: 18px;
+            color:#333333;
+            outline: none;
+            border-color: white;
+            border:none;
+            background: transparent;
+            text-align: center;
+        }
+
+        .score_bar {
+            --padding: 6px;
+            margin-top: 10px;
+            width:250px;
+            display: flex;
+            align-items: center;
+            padding: var(--padding);
+            border-radius: 20px;
+            background: white;
+        }
+
+        .score_bar input{
+            font-family: "Fredoka", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;            font-size: 12px;
+            font-weight: 600;
+            font-size: 18px;
+            color:#333333;
+            outline: none;
+            border-color: white;
+            border:none;
+            background: transparent;
+            text-align: center;
+        }
+
+        .year_bar {
+            --padding: 6px;
+            margin-top: 10px;
+            width:250px;
+            display: flex;
+            align-items: center;
+            padding: var(--padding);
+            border-radius: 20px;
+            background: white;
+        }
+
+        .year_bar input{
             font-family: "Fredoka", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;            font-size: 12px;
             font-weight: 600;
             font-size: 18px;
@@ -97,7 +165,19 @@
             text-align: center;
         }
 
-        .search_bar input:focus::placeholder {
+        .search input:focus::placeholder {
+            color: transparent;
+        }
+
+        .episode_bar input:focus::placeholder {
+            color: transparent;
+        }
+
+        .score_bar input:focus::placeholder {
+            color: transparent;
+        }
+
+        .year_bar input:focus::placeholder {
             color: transparent;
         }
 
@@ -123,18 +203,27 @@
     </a>
 
     <form class="search_bar" action="/home" method="get">
-        <span class="search_icon">🔍</span>
-        <input type="text" placeholder="Search Anime" name="search">
-    </form>
+        <!-- <div class="search">
+            <span class="search_icon">🔍</span>
+            <input type="text" placeholder="Search Anime" name="search">
+        </div> -->
 
-    <form class="search_bar" action="/home" method="get">
-        <span class="search_icon">🔍</span>
-        <input type="text" placeholder="Min Episodes" name="eps">
-    </form>
+        <div class="episode_bar">
+            <span class="search_icon">🔍</span>
+            <input type="number" placeholder="Min Episodes" name="eps">
+        </div>
+   
+        <div class="score_bar">
+            <span class="search_icon">🔍</span>
+            <input type="number" step="0.01" placeholder="Min Score" name="score">
+        </div>
 
-    <form class="search_bar" action="/home" method="get">
-        <span class="search_icon">🔍</span>
-        <input type="text" placeholder="Min Score" name="score">
+        <div class="year_bar">
+            <span class="search_icon">🔍</span>
+            <input type="number" placeholder="Min Year" name="year">
+        </div>
+
+        <input type="submit" value="Submit">
     </form>
 
     {% if message %}
