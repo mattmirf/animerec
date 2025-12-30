@@ -10,6 +10,7 @@ df.drop(df[df["type"] == "SPECIAL"].index, inplace=True)
 df.drop(df[df["score"] == '?'].index, inplace=True)
 df["score"] = df["score"].astype(float)
 df.drop(df[df["score"] < 7].index, inplace=True)
+df.drop(df[df["score"] >= 9.5].index, inplace=True)
 
 df.drop(df[df["year"] == '?'].index, inplace=True)
 df["year"] = df["year"].astype (int)

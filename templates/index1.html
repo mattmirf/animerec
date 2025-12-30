@@ -122,9 +122,10 @@
         <span class="search_icon">🔍</span>
         <input type="text" placeholder="Search Anime" name="search">
     </form>
+
     <div class="anime_grid">
-    {% for a in anime%}
-        <div class="anime_card">
+        {% for a in anime %}
+            <div class="anime_card">
                 <a href="{{ a.mal_url }}" target="_blank">
                 <figure>
                     <img  src="{{ a.image_url }}" alt="{{ a.title }}">
