@@ -19,10 +19,9 @@ def anime():
     query = request.args.get("search","").lower()
     if query:
         anime_list = df[
-                df["title"].astype(str).str.lower().str.contains(query, na=False)
-                | 
-                df["alternative_title"].astype(str).str.lower().str.contains(query, na=False)
-            ].to_dict(orient="records")
+                df["title"].astype(str).str.lower().str.contains(query, na=False) | 
+                df["alternative_title"].astype(str).str.lower().str.contains(query, na=False)]
+        anime_list = anime_list.to_dict(orient="records")
     else:
         # anime_list = df.nlargest(21, "score")
         anime_list = df.sort_values(by="score", ascending=False)[:100].iloc[1:]
