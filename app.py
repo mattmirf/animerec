@@ -33,9 +33,6 @@ def anime():
             df["title"].str.lower().str.contains(query, na=False, regex=False) | 
             df["alternative_title"].str.lower().str.contains(query, na=False, regex=False)]
 
-        if anime_list.empty:
-            message = f"No results found for '{query}'"
-
         if eps:
             anime_list = anime_list[anime_list["episodes"] >= eps]
         if score:
@@ -48,6 +45,8 @@ def anime():
             for g in genre:
                 anime_list = anime_list[anime_list["genres"].str.contains(g)]
 
+        if anime_list.empty and (eps or score or year or types or genre):
+            message = f"No results found for '{ query }'"
     else:   
         anime_list = df
         
@@ -63,7 +62,7 @@ def anime():
             if genre:
                 for g in genre: 
                     anime_list = anime_list[anime_list["genres"].str.contains(g)]
-
+           
         else: 
             anime_list = df.sort_values(by="score", ascending=False)[:101].iloc[1:]
             

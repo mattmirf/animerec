@@ -233,6 +233,11 @@
             display: inline-flex;
             width: 70%;
         }
+        p {
+            font-family: "Fredoka", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+            font-size: 150px;
+            
+        }
     </style>
 </head>
 <body>
@@ -283,11 +288,11 @@
                 <input type="submit" value="Submit">
             </form>
 
-            {% if message %}
-                <p>{{ message }}</p>
-            {% endif %}
+        
         </div>
-
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
         <div class="anime_grid">
             {% for a in anime %}
                 <div class="anime_card">
