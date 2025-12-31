@@ -45,7 +45,7 @@ def anime():
             for g in genre:
                 anime_list = anime_list[anime_list["genres"].str.contains(g)]
 
-        if anime_list.empty and (eps or score or year or types or genre):
+        if anime_list.empty or (eps or score or year or types or genre):
             message = f"No results found for '{ query }'"
     else:   
         anime_list = df
