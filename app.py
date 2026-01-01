@@ -64,13 +64,13 @@ def anime():
                     anime_list = anime_list[anime_list["genres"].str.contains(g)]
            
         else: 
-            anime_list = df.sort_values(by="score", ascending=False)[:101].iloc[1:]
+            anime_list = df.sort_values(by="score", ascending=False)[:100].iloc[1:]
             
     anime_list = anime_list.sort_values(by="score", ascending=False)
     anime_list = anime_list.to_dict(orient='records')
     anime_list = clean_alternative_titles(anime_list)
 
-    return render_template('index1.html', anime=anime_list, message=message, genre=genre_list, query=query, eps=eps, score=score, year=year,)
+    return render_template('index1.html', anime=anime_list, message=message, genre=genre_list, query=query, eps=eps, score=score, year=year)
 
 def clean_alternative_titles(clean_list):
     for data in clean_list:
